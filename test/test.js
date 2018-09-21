@@ -1,4 +1,4 @@
-/* global WebAssembly: false */
+/* global WebAssembly */
 
 const assert = require('assert')
 const swapGlobal = require('..')
