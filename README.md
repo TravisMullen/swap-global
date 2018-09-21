@@ -19,7 +19,7 @@ swap('isNaN', 'someValue')
 // will set value of `global.isNaN` and store default (or previously assigned) value in memory.
 ```
 
-Check properties assigned `pending()`.
+Check properties assigned using `pending()`.
 
 ```js
 pending()
