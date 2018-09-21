@@ -1,4 +1,4 @@
-# Swap Global Vars
+# Swap Global Property Values
 
 Set temporary variables in the `global` namespace and restore them once complete.
 
