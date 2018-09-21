@@ -1,0 +1,21 @@
+{
+  "name": "swap-global",
+  "version": "1.0.0",
+  "main": "dist/swap-global.cjs.js",
+  "module": "dist/swap-global.esm.js",
+  "browser": "dist/swap-global.umd.js",
+  "devDependencies": {
+    "rollup": "^0.66.0",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "node test/test.js",
+    "pretest": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
+}
