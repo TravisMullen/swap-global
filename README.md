@@ -1,6 +1,6 @@
 # Swap Global Vars
 
-Set variables in the `global` namespace and restore them once complete.
+Set temporary variables in the `global` namespace and restore them once complete.
 
 Don't worry about leaving a messy trail behind you.
 
