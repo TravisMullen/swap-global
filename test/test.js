@@ -1,5 +1,6 @@
 /* global WebAssembly */
 
+const pkg = require('../package.json')
 const assert = require('assert')
 const swapGlobal = require('..')
 
@@ -16,6 +17,10 @@ const swappedPropertyNames = [
   'someCustomProperty',
   'anotherCustomProperty'
 ]
+
+console.log(`
+Starting tests...
+`)
 
 /** similute something set in global by another worker. */
 const predefinedFunction = function () {
@@ -92,3 +97,8 @@ assert.strictEqual(global.somePredefinedPrimative, 'this is already being used f
 /** confirm held values and pointers have been cleared */
 assert.deepStrictEqual(swapGlobal.pending(), [], 'pending should be cleared after restore() is called')
 assert.deepStrictEqual(swapGlobal.inMemory(), [], 'inMemory should be cleared after restore() is called')
+
+console.log(`
+Successfully completed tests
+  for ${pkg.name}
+`)

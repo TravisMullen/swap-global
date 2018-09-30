@@ -1,20 +1,28 @@
 {
   "name": "swap-global",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/swap-global.cjs.js",
   "module": "dist/swap-global.esm.js",
   "browser": "dist/swap-global.umd.js",
   "devDependencies": {
     "rollup": "^0.66.0",
     "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "snazzy": "latest",
+    "standard": "latest"
   },
   "scripts": {
     "prepare": "npm run test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",
-    "pretest": "npm run build"
+    "pretest": "npm run lint && npm run build",
+    "lint": "standard --fix './{src,test}/**/*.{js,mjs}' --verbose | snazzy"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TravisMullen/swap-global.git"
   },
   "files": [
     "dist"
