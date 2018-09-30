@@ -10,6 +10,7 @@
     "rollup-plugin-node-resolve": "^3.0.0"
   },
   "scripts": {
+    "prepare": "npm run test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",
