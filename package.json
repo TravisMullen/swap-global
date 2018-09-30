@@ -19,7 +19,7 @@
     "pretest": "npm run lint && npm run build",
     "lint": "standard --fix './{src,test}/**/*.{js,mjs}' --verbose | snazzy"
   },
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TravisMullen/swap-global.git"
