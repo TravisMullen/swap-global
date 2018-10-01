@@ -47,12 +47,12 @@ const customFunction = function () {
 const customPrimative = 'custom string.'
 
 swapGlobal.swap('isNaN', customFunction)
-assert.strictEqual(isNaN, customFunction, 'somePredefinedFunction should be a custom function')
-assert.strictEqual(isNaN(), 'custom function.', 'somePredefinedFunction should equal the value of the function when called')
+assert.strictEqual(isNaN, customFunction, 'isNaN should now be a custom function')
+assert.strictEqual(isNaN(), 'custom function.', 'isNaN should now equal the value of the function when called')
 
 swapGlobal.swap('WebAssembly', customFunction)
-assert.strictEqual(WebAssembly, customFunction, 'somePredefinedFunction should be a custom function')
-assert.strictEqual(WebAssembly(), 'custom function.', 'somePredefinedFunction should equal the value of the function when called')
+assert.strictEqual(WebAssembly, customFunction, 'WebAssembly should now be a custom function')
+assert.strictEqual(WebAssembly(), 'custom function.', 'WebAssembly should now equal the value of the function when called')
 
 swapGlobal.swap('somePredefinedFunction', customFunction)
 assert.strictEqual(global.somePredefinedFunction, customFunction, 'somePredefinedFunction should be a custom function')
@@ -61,6 +61,19 @@ assert.strictEqual(global.somePredefinedFunction(), 'custom function.', 'somePre
 swapGlobal.swap('somePredefinedPrimative', customPrimative)
 assert.strictEqual(global.somePredefinedPrimative, customPrimative, 'somePredefinedPrimative should be a custom primative')
 assert.strictEqual(global.somePredefinedPrimative, 'custom string.', 'somePredefinedPrimative should equal the value of the primative')
+
+swapGlobal.swap('somePredefinedFunction', customFunction)
+assert.strictEqual(global.somePredefinedFunction, customFunction, 'somePredefinedFunction should be a custom function')
+assert.strictEqual(global.somePredefinedFunction(), 'custom function.', 'somePredefinedFunction should equal the value of the function when called')
+
+swapGlobal.swap('somePredefinedPrimative', customPrimative)
+assert.strictEqual(global.somePredefinedPrimative, customPrimative, 'somePredefinedPrimative should be a custom primative')
+assert.strictEqual(global.somePredefinedPrimative, 'custom string.', 'somePredefinedPrimative should equal the value of the primative')
+
+/** shoud be able to call swapped again and maintain original legacy value */
+const anotherCustomPrimative = 'another custom string.'
+swapGlobal.swap('WebAssembly', anotherCustomPrimative)
+assert.strictEqual(WebAssembly, anotherCustomPrimative, 'WebAssembly should now be a string')
 
 /** check existing can be swapped with undefined */
 swapGlobal.swap('anotherPredefinedPrimative', undefined)
@@ -90,7 +103,10 @@ assert.strictEqual(global.anotherCustomProperty, undefined, 'anotherCustomProper
 /** check values are correct from restored */
 assert.strictEqual(isNaN(1), false, 'isNaN(1) should be false because 1 is a number')
 assert.strictEqual(isNaN('cheese'), true, 'isNaN(cheese) should be true because a string is not a number')
+
+assert.strict.notEqual(WebAssembly, anotherCustomPrimative, 'WebAssembly should not be a string after restore')
 assert.strictEqual(typeof (WebAssembly), 'object', 'WebAssembly should be an object because that was the previous type')
+
 assert.strictEqual(global.somePredefinedFunction(), 'this is already being used for a function.', 'global.somePredefinedFunction should be restored as predefinedFunction')
 assert.strictEqual(global.somePredefinedPrimative, 'this is already being used for a string.', 'global.somePredefinedPrimative should be restored as predefinedPrimative')
 

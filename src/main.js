@@ -7,6 +7,8 @@ export const pending = () => pendingKeys.slice(0)
 /**
  * Add new value to `global` space.
  * Save old value, if one exists.
+ * If swap `global` value has already been saved,
+ * it will be overridden until `restore()` is called.
  *
  * @param {any} keyname to add to `global`
  * @param {any} value to save in keyname on `global`
@@ -14,10 +16,12 @@ export const pending = () => pendingKeys.slice(0)
  * @todo set custom namespace, and fallback to window if global is not defined
  */
 export const swap = (key, value) => {
-  if (global[key]) {
-    savedValues[key] = global[key]
+  if (!pendingKeys.includes(key)) {
+    if (global[key]) {
+      savedValues[key] = global[key]
+    }
+    pendingKeys.push(key)
   }
-  pendingKeys.push(key)
   global[key] = value
   return savedValues[key]
 }

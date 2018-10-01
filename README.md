@@ -12,11 +12,18 @@ Define properties values using `swap()`.
 swap('somePropertyName', 'someValue')
 // will set value of `global.somePropertyName`
 ```
-Can replase existing properties like `isNaN`
+Can replase existing properties like `isNaN()`
 
 ```js
-swap('isNaN', 'someValue')
-// will set value of `global.isNaN` and store default (or previously assigned) value in memory.
+swap('isNaN()', 'someValue')
+// will set value of `global.isNaN()` and store default (or previously assigned) value in memory.
+```
+
+```js
+swap('isNaN()', 'someNewValue')
+// will set new value of `global.isNaN()` and keep original value in memory.
+isNaN()
+// => 'someNewValue'
 ```
 
 Check properties assigned using `pending()`.
@@ -24,7 +31,7 @@ Check properties assigned using `pending()`.
 ```js
 pending()
 // returns all properties that have been swapped
-// => ['somePropertyName', 'isNaN']
+// => ['somePropertyName', 'isNaN()']
 ```
 
 Check properties which had previous values using `inMemory()`.
@@ -32,7 +39,7 @@ Check properties which had previous values using `inMemory()`.
 ```js
 inMemory()
 // returns all properties that are currently held in memory
-// => ['isNaN']
+// => ['isNaN()']
 ```
 
 Restore properties using `restore()`. Properties that did not have a value will be reverted to `undefined`.
