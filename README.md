@@ -9,20 +9,23 @@ Don't worry about leaving a messy trail behind you.
 Define properties values using `swap()`.
 
 ```js
+import { swap } from 'swap-global'
+
 swap('somePropertyName', 'someValue')
 // will set value of `global.somePropertyName`
 ```
-Can replase existing properties like `isNaN()`
+Can replace existing properties like `isNaN`
 
 ```js
-swap('isNaN()', 'someValue')
-// will set value of `global.isNaN()` and store default (or previously assigned) value in memory.
+swap('isNaN', 'someValue')
+// will set value of `global.isNaN` and store default (or previously assigned) value in memory.
 ```
+Can continuously update with new values and original (pre-swap) value will still be restored.
 
 ```js
-swap('isNaN()', 'someNewValue')
-// will set new value of `global.isNaN()` and keep original value in memory.
-isNaN()
+swap('isNaN', 'someNewValue')
+// will set new value of `global.isNaN` and keep original value in memory.
+isNaN
 // => 'someNewValue'
 ```
 
@@ -31,7 +34,7 @@ Check properties assigned using `pending()`.
 ```js
 pending()
 // returns all properties that have been swapped
-// => ['somePropertyName', 'isNaN()']
+// => ['somePropertyName', 'isNaN']
 ```
 
 Check properties which had previous values using `inMemory()`.
@@ -39,7 +42,7 @@ Check properties which had previous values using `inMemory()`.
 ```js
 inMemory()
 // returns all properties that are currently held in memory
-// => ['isNaN()']
+// => ['isNaN']
 ```
 
 Restore properties using `restore()`. Properties that did not have a value will be reverted to `undefined`.

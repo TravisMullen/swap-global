@@ -1,6 +1,6 @@
 {
   "name": "swap-global",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/swap-global.cjs.js",
   "module": "dist/swap-global.esm.js",
   "browser": "dist/swap-global.umd.js",

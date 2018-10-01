@@ -104,7 +104,7 @@ assert.strictEqual(global.anotherCustomProperty, undefined, 'anotherCustomProper
 assert.strictEqual(isNaN(1), false, 'isNaN(1) should be false because 1 is a number')
 assert.strictEqual(isNaN('cheese'), true, 'isNaN(cheese) should be true because a string is not a number')
 
-assert.strict.notEqual(WebAssembly, anotherCustomPrimative, 'WebAssembly should not be a string after restore')
+assert.strictNotEqual(WebAssembly, anotherCustomPrimative, 'WebAssembly should not be a string after restore')
 assert.strictEqual(typeof (WebAssembly), 'object', 'WebAssembly should be an object because that was the previous type')
 
 assert.strictEqual(global.somePredefinedFunction(), 'this is already being used for a function.', 'global.somePredefinedFunction should be restored as predefinedFunction')
@@ -115,6 +115,6 @@ assert.deepStrictEqual(swapGlobal.pending(), [], 'pending should be cleared afte
 assert.deepStrictEqual(swapGlobal.inMemory(), [], 'inMemory should be cleared after restore() is called')
 
 console.log(`
-Successfully completed tests
+\u001B[32m✓\u001B[39m ${expected}` Successfully completed all tests
   for ${pkg.name}
 `)
