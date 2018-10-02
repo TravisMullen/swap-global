@@ -6,13 +6,13 @@ Don't worry about leaving a messy trail behind you.
 
 ## Usage
 
-Define properties values using `swap()`.
+Assign new values to properties using `swap()`.
 
 ```js
 import { swap } from 'swap-global'
 
 swap('somePropertyName', 'someValue')
-// will set value of `global.somePropertyName`
+// will set value of `global.somePropertyName` to `someValue`
 ```
 Can replace existing properties like `isNaN`
 
@@ -32,6 +32,8 @@ isNaN
 Check properties assigned using `pending()`.
 
 ```js
+import { pending } from 'swap-global'
+
 pending()
 // returns all properties that have been swapped
 // => ['somePropertyName', 'isNaN']
@@ -40,6 +42,8 @@ pending()
 Check properties which had previous values using `inMemory()`.
 
 ```js
+import { inMemory } from 'swap-global'
+
 inMemory()
 // returns all properties that are currently held in memory
 // => ['isNaN']
@@ -48,6 +52,8 @@ inMemory()
 Restore properties using `restore()`. Properties that did not have a value will be reverted to `undefined`.
 
 ```js
+import { restore } from 'swap-global'
+
 restore()
 // all properties changed using `swap` will be reverted back to previous values.
 // typeof('somePropertyName') === 'undefined'
